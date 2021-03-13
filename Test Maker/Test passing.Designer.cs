@@ -34,6 +34,8 @@ namespace Test_Passing
             this.AnswersMultiple = new System.Windows.Forms.CheckedListBox();
             this.QuestionTextBox = new System.Windows.Forms.TextBox();
             this.AnswersSingle = new System.Windows.Forms.ComboBox();
+            this.Progress = new System.Windows.Forms.ProgressBar();
+            this.PercentLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // BackButton
@@ -46,6 +48,7 @@ namespace Test_Passing
             this.BackButton.TabIndex = 0;
             this.BackButton.Text = "Назад";
             this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
             // NextButton
             // 
@@ -94,20 +97,41 @@ namespace Test_Passing
             this.AnswersSingle.TabIndex = 4;
             this.AnswersSingle.Visible = false;
             // 
+            // Progress
+            // 
+            this.Progress.Location = new System.Drawing.Point(12, 142);
+            this.Progress.Name = "Progress";
+            this.Progress.Size = new System.Drawing.Size(360, 23);
+            this.Progress.TabIndex = 5;
+            this.Progress.Visible = false;
+            // 
+            // PercentLabel
+            // 
+            this.PercentLabel.AutoSize = true;
+            this.PercentLabel.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.PercentLabel.Location = new System.Drawing.Point(162, 109);
+            this.PercentLabel.Name = "PercentLabel";
+            this.PercentLabel.Size = new System.Drawing.Size(43, 30);
+            this.PercentLabel.TabIndex = 6;
+            this.PercentLabel.Text = "0%";
+            // 
             // Test_passing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lime;
             this.ClientSize = new System.Drawing.Size(384, 261);
+            this.Controls.Add(this.PercentLabel);
+            this.Controls.Add(this.Progress);
             this.Controls.Add(this.QuestionTextBox);
             this.Controls.Add(this.NextButton);
             this.Controls.Add(this.BackButton);
-            this.Controls.Add(this.AnswersMultiple);
             this.Controls.Add(this.AnswersSingle);
+            this.Controls.Add(this.AnswersMultiple);
             this.Name = "Test_passing";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Test_passing";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Test_passing_FormClosed);
             this.Load += new System.EventHandler(this.Test_passing_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -121,5 +145,7 @@ namespace Test_Passing
         private System.Windows.Forms.CheckedListBox AnswersMultiple;
         private System.Windows.Forms.TextBox QuestionTextBox;
         private System.Windows.Forms.ComboBox AnswersSingle;
+        private System.Windows.Forms.ProgressBar Progress;
+        private System.Windows.Forms.Label PercentLabel;
     }
 }

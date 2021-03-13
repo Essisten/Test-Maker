@@ -11,7 +11,7 @@ namespace Test_Passing
     {
         public static List<Question> Questions = new List<Question>();
         byte? mode, function;
-        static Action basic_showing;
+        public static Action basic_showing;
         public TestMaker()
         {
             InitializeComponent();
@@ -245,8 +245,14 @@ namespace Test_Passing
 
         private void StartTest_Click(object sender, EventArgs e)
         {
-            Hide();
-
+            if (Questions.Count > 0)
+            {
+                Test_passing tp = new Test_passing();
+                tp.Show();
+                Hide();
+            }
+            else
+                MessageBox.Show("Сперва откройте готовый тест или же создайте свой!");
         }
 
         void OpenTest_Click(object sender, EventArgs e)
