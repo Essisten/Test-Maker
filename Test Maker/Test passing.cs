@@ -30,17 +30,26 @@ namespace Test_Passing
             QuestionTextBox.Text = questions[Count].Text;
         }
 
-        private void NextButton_Click(object sender, EventArgs e)
+        void NextButton_Click(object sender, EventArgs e)
         {
             List<int> ids = new List<int>();
             for (int i = 0; i < questions.Count; i++)
             {
                 if (questions[Count].Answers[i].Correct)
+                {
                     ids.Add(i);
+                    if (questions[Count].Single_type)
+                        break;
+                }
             }
             if (questions[Count].Single_type)
             {
-                
+                CorrectAnswers.Add(AnswersSingle.SelectedIndex == ids[0]);
+                QuestionTextBox.Text = questions[++Count].Text;
+            }
+            else
+            {
+
             }
         }
     }
