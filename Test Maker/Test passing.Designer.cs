@@ -1,4 +1,3 @@
-﻿
 namespace Test_Passing
 {
     partial class Test_passing
@@ -126,8 +125,8 @@ namespace Test_Passing
             this.Controls.Add(this.QuestionTextBox);
             this.Controls.Add(this.NextButton);
             this.Controls.Add(this.BackButton);
-            this.Controls.Add(this.AnswersMultiple);
             this.Controls.Add(this.AnswersSingle);
+            this.Controls.Add(this.AnswersMultiple);
             this.Name = "Test_passing";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Test_passing";

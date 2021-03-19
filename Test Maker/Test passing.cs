@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -16,6 +16,10 @@ namespace Test_Passing
             InitializeComponent();
             Progress.Hide();
             PercentLabel.Hide();
+            hiding += BackButton.Hide;
+            hiding += NextButton.Hide;
+            hiding += AnswersSingle.Hide;
+            hiding += AnswersMultiple.Hide;
         }
 
         void Test_passing_Load(object sender, EventArgs e)
@@ -24,10 +28,6 @@ namespace Test_Passing
                 questions.Add(q);
             ShowingElements();
             Refreshing();
-            hiding += BackButton.Hide;
-            hiding += NextButton.Hide;
-            hiding += AnswersSingle.Hide;
-            hiding += AnswersMultiple.Hide;
         }
 
         void ShowingElements()
@@ -85,6 +85,7 @@ namespace Test_Passing
             }
             if (Count >= questions.Count - 1)
             {
+                hiding.Invoke();
                 BackColor = Color.Bisque;
                 QuestionTextBox.BackColor = BackColor;
                 Progress.Show();
@@ -99,15 +100,11 @@ namespace Test_Passing
                 QuestionTextBox.Text = "Тест завершён, вот ваш результат:";
                 PercentLabel.Text = percent + "%";
                 PercentLabel.Show();
-                hiding.Invoke();
             }
             else
                 QuestionTextBox.Text = questions[++Count].Text;
-            if (Count < questions.Count - 1)
-            {
-                Refreshing();
-                ShowingElements();
-            }
+            Refreshing();
+            ShowingElements();
         }
 
         private void BackButton_Click(object sender, EventArgs e)

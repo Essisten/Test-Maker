@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -172,23 +172,13 @@ namespace Test_Passing
                                 Questions[QI].Answers.Add(new Answer(CorrectAnswerChecker.Checked, AnswerTextBox.Text));
                                 break;
                             case 1:
-                                if (Questions[QI].Answers.Count > 0)
-                                {
-                                    Questions[QI].Answers.RemoveAt(AI);
-                                    SelectionOfAnswers.Items.RemoveAt(AI);
-                                }
-                                else
-                                    MessageBox.Show("Нечего удалять!");
+                                Questions[QI].Answers.RemoveAt(AI);
+                                SelectionOfAnswers.Items.RemoveAt(AI);
                                 break;
                             case 2:
-                                if (Questions[QI].Answers.Count > 0)
-                                {
-                                    Questions[QI].Answers[AI] = new Answer(CorrectAnswerChecker.Checked, AnswerTextBox.Text);
-                                    SelectionOfAnswers.Items.RemoveAt(AI);
-                                    SelectionOfAnswers.Items.Insert(AI, AnswerTextBox.Text);
-                                }
-                                else
-                                    MessageBox.Show("Нужно больше ответов!");
+                                Questions[QI].Answers[AI] = new Answer(CorrectAnswerChecker.Checked, AnswerTextBox.Text);
+                                SelectionOfAnswers.Items.RemoveAt(AI);
+                                SelectionOfAnswers.Items.Insert(AI, AnswerTextBox.Text);
                                 break;
                         }
                     }
@@ -202,14 +192,6 @@ namespace Test_Passing
 
         void SaveTest_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < Questions.Count; i++)
-            {
-                if (Questions[i].Answers.Count == 0)
-                {
-                    MessageBox.Show($"В вопросе №{i + 1} нет ответов!");
-                    return;
-                }    
-            }
             if (DialogResult.OK == SavingTestWindow.ShowDialog())
             {
                 if (SavingTestWindow.FileName != null)
