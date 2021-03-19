@@ -1,4 +1,3 @@
-﻿
 namespace Test_Passing
 {
     partial class TestMaker
@@ -343,4 +342,3 @@ namespace Test_Passing
         private System.Windows.Forms.OpenFileDialog CreateTestWindow;
     }
 }
-
