@@ -1,5 +1,5 @@
 ﻿
-namespace Test_Maker
+namespace Test_Passing
 {
     partial class TestMaker
     {
@@ -94,6 +94,7 @@ namespace Test_Maker
             this.StartTest.Name = "StartTest";
             this.StartTest.Size = new System.Drawing.Size(74, 20);
             this.StartTest.Text = "Запустить";
+            this.StartTest.Click += new System.EventHandler(this.StartTest_Click);
             // 
             // FunctionSelection
             // 
@@ -138,6 +139,7 @@ namespace Test_Maker
             // TextBox
             // 
             this.TextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.TextBox.Location = new System.Drawing.Point(132, 59);
             this.TextBox.Name = "TextBox";
             this.TextBox.Size = new System.Drawing.Size(440, 228);
@@ -201,6 +203,7 @@ namespace Test_Maker
             this.SelectionOfAnswers.Size = new System.Drawing.Size(183, 27);
             this.SelectionOfAnswers.TabIndex = 9;
             this.SelectionOfAnswers.Visible = false;
+            this.SelectionOfAnswers.SelectedIndexChanged += new System.EventHandler(this.SelectionOfAnswers_SelectedIndexChanged);
             // 
             // AnswersLabel
             // 
@@ -235,8 +238,7 @@ namespace Test_Maker
             // 
             // SavingTestWindow
             // 
-            this.SavingTestWindow.CheckFileExists = true;
-            this.SavingTestWindow.FileName = "test";
+            this.SavingTestWindow.FileName = "test.t";
             this.SavingTestWindow.Filter = "\"Все файлы|*.*|Тесты|*.t\"";
             // 
             // ExampleButton1
