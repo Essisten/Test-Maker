@@ -1,5 +1,5 @@
 ﻿
-namespace Test_Maker
+namespace Test_Passing
 {
     partial class TestMaker
     {
@@ -51,6 +51,7 @@ namespace Test_Maker
             this.ExampleButton2 = new System.Windows.Forms.CheckBox();
             this.CorrectAnswerChecker = new System.Windows.Forms.CheckBox();
             this.CreateTestWindow = new System.Windows.Forms.OpenFileDialog();
+            this.FastSave = new System.Windows.Forms.ToolStripMenuItem();
             this.UpperMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.QuestionIndex)).BeginInit();
             this.SuspendLayout();
@@ -61,6 +62,7 @@ namespace Test_Maker
             this.CreateTest,
             this.OpenTest,
             this.SaveTest,
+            this.FastSave,
             this.StartTest});
             this.UpperMenu.Location = new System.Drawing.Point(0, 0);
             this.UpperMenu.Name = "UpperMenu";
@@ -85,8 +87,8 @@ namespace Test_Maker
             // SaveTest
             // 
             this.SaveTest.Name = "SaveTest";
-            this.SaveTest.Size = new System.Drawing.Size(78, 20);
-            this.SaveTest.Text = "Сохранить";
+            this.SaveTest.Size = new System.Drawing.Size(108, 20);
+            this.SaveTest.Text = "Сохранить как...";
             this.SaveTest.Click += new System.EventHandler(this.SaveTest_Click);
             // 
             // StartTest
@@ -94,6 +96,7 @@ namespace Test_Maker
             this.StartTest.Name = "StartTest";
             this.StartTest.Size = new System.Drawing.Size(74, 20);
             this.StartTest.Text = "Запустить";
+            this.StartTest.Click += new System.EventHandler(this.StartTest_Click);
             // 
             // FunctionSelection
             // 
@@ -138,6 +141,7 @@ namespace Test_Maker
             // TextBox
             // 
             this.TextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.TextBox.Location = new System.Drawing.Point(132, 59);
             this.TextBox.Name = "TextBox";
             this.TextBox.Size = new System.Drawing.Size(440, 228);
@@ -201,6 +205,7 @@ namespace Test_Maker
             this.SelectionOfAnswers.Size = new System.Drawing.Size(183, 27);
             this.SelectionOfAnswers.TabIndex = 9;
             this.SelectionOfAnswers.Visible = false;
+            this.SelectionOfAnswers.SelectedIndexChanged += new System.EventHandler(this.SelectionOfAnswers_SelectedIndexChanged);
             // 
             // AnswersLabel
             // 
@@ -235,8 +240,7 @@ namespace Test_Maker
             // 
             // SavingTestWindow
             // 
-            this.SavingTestWindow.CheckFileExists = true;
-            this.SavingTestWindow.FileName = "test";
+            this.SavingTestWindow.FileName = "test.t";
             this.SavingTestWindow.Filter = "\"Все файлы|*.*|Тесты|*.t\"";
             // 
             // ExampleButton1
@@ -278,6 +282,13 @@ namespace Test_Maker
             // 
             this.CreateTestWindow.FileName = "test.t";
             this.CreateTestWindow.Filter = "\"Все файлы|*.*|Тесты|*.t\"";
+            // 
+            // FastSave
+            // 
+            this.FastSave.Name = "FastSave";
+            this.FastSave.Size = new System.Drawing.Size(78, 20);
+            this.FastSave.Text = "Сохранить";
+            this.FastSave.Click += new System.EventHandler(this.FastSave_Click);
             // 
             // TestMaker
             // 
@@ -339,6 +350,7 @@ namespace Test_Maker
         private System.Windows.Forms.CheckBox ExampleButton2;
         private System.Windows.Forms.CheckBox CorrectAnswerChecker;
         private System.Windows.Forms.OpenFileDialog CreateTestWindow;
+        private System.Windows.Forms.ToolStripMenuItem FastSave;
     }
 }
 
