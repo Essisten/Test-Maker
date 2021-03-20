@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -373,7 +373,6 @@ namespace Test_Passing
             }
             return true;
         }
-
     }
     public class Question
     {

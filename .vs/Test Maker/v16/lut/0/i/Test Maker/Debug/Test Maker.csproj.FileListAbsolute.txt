@@ -1,0 +1,9 @@
+E:\Мем\Test Maker\.vs\Test Maker\v16\lut\0\b\Test Maker.exe.config
+E:\Мем\Test Maker\.vs\Test Maker\v16\lut\0\b\Test Maker.exe
+E:\Мем\Test Maker\.vs\Test Maker\v16\lut\0\i\Test Maker\Debug\Test Maker.csprojAssemblyReference.cache
+E:\Мем\Test Maker\.vs\Test Maker\v16\lut\0\i\Test Maker\Debug\Test_Maker.TestMaker.resources
+E:\Мем\Test Maker\.vs\Test Maker\v16\lut\0\i\Test Maker\Debug\Test_Maker.Properties.Resources.resources
+E:\Мем\Test Maker\.vs\Test Maker\v16\lut\0\i\Test Maker\Debug\Test Maker.csproj.GenerateResource.cache
+E:\Мем\Test Maker\.vs\Test Maker\v16\lut\0\i\Test Maker\Debug\Test Maker.csproj.CoreCompileInputs.cache
+E:\Мем\Test Maker\.vs\Test Maker\v16\lut\0\i\Test Maker\Debug\Test Maker.csproj.CopyComplete
+E:\Мем\Test Maker\.vs\Test Maker\v16\lut\0\i\Test Maker\Debug\Test Maker.exe
