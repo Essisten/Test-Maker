@@ -11,6 +11,7 @@ namespace Test_Passing
     {
         public static List<Question> Questions = new List<Question>();
         byte? mode, function;
+        string savepath;
         public static Action basic_showing;
         public TestMaker()
         {
@@ -145,24 +146,6 @@ namespace Test_Passing
             }
             else if (mode == 1) //If you're acting with answers
             {
-                if (QuestionIndex.Value <= Questions.Count && Questions.Count > 0)  //Checking if question contain only one correct answer
-                {
-                    if (Questions[QI].Single_type)
-                    {
-                        byte CorrectCount = 0;
-                        foreach (Answer a in Questions[QI].Answers)
-                        {
-                            if (a.Correct)
-                                CorrectCount++;
-                            if (CorrectCount > 1 && a.Correct)
-                                break;
-                        }
-                        if (CorrectCount > 1)
-                        {
-                            MessageBox.Show("Было задано более одного правильного ответа в вопросе. У данного вопроса может быть лишь один правильный ответ.");
-                            return;
-                        }
-                    }
                     if (AnswerTextBox.Text != null && AnswerTextBox.Text.Length > 0)
                     {
                         switch (function)   //Acts with answers
@@ -172,45 +155,41 @@ namespace Test_Passing
                                 Questions[QI].Answers.Add(new Answer(CorrectAnswerChecker.Checked, AnswerTextBox.Text));
                                 break;
                             case 1:
-                                Questions[QI].Answers.RemoveAt(AI);
-                                SelectionOfAnswers.Items.RemoveAt(AI);
+                                if (Questions[QI].Answers.Count > 0)
+                                {
+                                    Questions[QI].Answers.RemoveAt(AI);
+                                    SelectionOfAnswers.Items.RemoveAt(AI);
+                                }
+                                else
+                                    MessageBox.Show("Нечего удалять!");
                                 break;
                             case 2:
-                                Questions[QI].Answers[AI] = new Answer(CorrectAnswerChecker.Checked, AnswerTextBox.Text);
-                                SelectionOfAnswers.Items.RemoveAt(AI);
-                                SelectionOfAnswers.Items.Insert(AI, AnswerTextBox.Text);
+                                if (Questions[QI].Answers.Count > 0)
+                                {
+                                    Questions[QI].Answers[AI] = new Answer(CorrectAnswerChecker.Checked, AnswerTextBox.Text);
+                                    SelectionOfAnswers.Items.RemoveAt(AI);
+                                    SelectionOfAnswers.Items.Insert(AI, AnswerTextBox.Text);
+                                }
+                                else
+                                    MessageBox.Show("Нужно больше ответов!");
                                 break;
                         }
                     }
                     else
                         MessageBox.Show("Введите вопрос");
-                }
-                else
-                    MessageBox.Show("Неверный индекс вопроса!");
             }
         }
 
         void SaveTest_Click(object sender, EventArgs e)
         {
-            if (DialogResult.OK == SavingTestWindow.ShowDialog())
+            if (QuestionsChecker())
             {
-                if (SavingTestWindow.FileName != null)
+                if (DialogResult.OK == SavingTestWindow.ShowDialog())
                 {
-                    using (StreamWriter file = new StreamWriter(File.OpenWrite(SavingTestWindow.FileName), Encoding.Unicode))
+                    savepath = SavingTestWindow.FileName;
+                    if (savepath != null)
                     {
-                        foreach (Question q in Questions)
-                        {
-                            file.Write($"<<<{q.Text}>>> <<<{q.Single_type}>>> <<<");
-                            foreach (Answer a in q.Answers)
-                            {
-                                file.Write($"{a.Text}|||{a.Correct}");
-                                if (q.Answers[q.Answers.Count - 1] != a)
-                                    file.Write("|||");
-                            }
-                            file.Write(">>>");
-                            if (Questions[Questions.Count - 1] != q)
-                                file.WriteLine();
-                        }
+                        Saving();
                     }
                 }
             }
@@ -237,28 +216,33 @@ namespace Test_Passing
             basic_showing.Invoke();
         }
 
-        private void SelectionOfAnswers_SelectedIndexChanged(object sender, EventArgs e)
+        void SelectionOfAnswers_SelectedIndexChanged(object sender, EventArgs e)
         {
             AnswerTextBox.Text = SelectionOfAnswers.SelectedItem.ToString();
             CorrectAnswerChecker.Checked = Questions[(int)QuestionIndex.Value].Answers[SelectionOfAnswers.SelectedIndex].Correct;
         }
 
-        private void StartTest_Click(object sender, EventArgs e)
+        void StartTest_Click(object sender, EventArgs e)
         {
-            if (Questions.Count > 0)
+            if (QuestionsChecker())
             {
-                Test_passing tp = new Test_passing();
-                tp.Show();
-                Hide();
+                if (Questions.Count > 0)
+                {
+                    Test_passing tp = new Test_passing();
+                    tp.Show();
+                    Hide();
+                }
+                else
+                    MessageBox.Show("Сперва откройте готовый тест или же создайте свой!");
             }
-            else
-                MessageBox.Show("Сперва откройте готовый тест или же создайте свой!");
         }
 
         void OpenTest_Click(object sender, EventArgs e)
         {
             if (CreateTestWindow.ShowDialog() == DialogResult.OK)
             {
+                savepath = CreateTestWindow.FileName;
+                Questions.Clear();
                 using (StreamReader file = new StreamReader(CreateTestWindow.FileName, Encoding.Unicode))
                 {
                     while (!file.EndOfStream)   //Reading till end of file
@@ -329,6 +313,66 @@ namespace Test_Passing
             }
         }
 
+        void FastSave_Click(object sender, EventArgs e)
+        {
+            if (QuestionsChecker())
+                Saving();
+        }
+
+        void Saving()
+        {
+            using (StreamWriter file = new StreamWriter(File.OpenWrite(savepath), Encoding.Unicode))
+            {
+                foreach (Question q in Questions)
+                {
+                    file.Write($"<<<{q.Text}>>> <<<{q.Single_type}>>> <<<");
+                    foreach (Answer a in q.Answers)
+                    {
+                        file.Write($"{a.Text}|||{a.Correct}");
+                        if (q.Answers[q.Answers.Count - 1] != a)
+                            file.Write("|||");
+                    }
+                    file.Write(">>>");
+                    if (Questions[Questions.Count - 1] != q)
+                        file.WriteLine();
+                }
+            }
+        }
+
+        bool QuestionsChecker()
+        {
+            int CorrectCounter;
+            if (Questions.Count == 0)
+            {
+                MessageBox.Show("Вопросов в этом тесте нет...");
+                return false;
+            }
+            for (int i = 0; i < Questions.Count; i++)
+            {
+                CorrectCounter = 0;
+                if (Questions[i].Answers.Count == 0)
+                {
+                    MessageBox.Show($"У вопроса №{i + 1} нет ответов!");
+                    return false;
+                }
+                foreach (Answer a in Questions[i].Answers)
+                {
+                    if (a.Correct)
+                        CorrectCounter++;
+                    if (CorrectCounter > 1 & Questions[i].Single_type)
+                    {
+                        MessageBox.Show($"В вопросе №{i + 1} можно задать лишь 1 правильный ответ, но в нём их больше");
+                        return false;
+                    }
+                }
+                if (CorrectCounter == 0)
+                {
+                    MessageBox.Show($"В вопросе №{i + 1} нет ни одного правильного ответа");
+                    return false;
+                }
+            }
+            return true;
+        }
     }
     public class Question
     {

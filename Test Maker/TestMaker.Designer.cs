@@ -1,3 +1,4 @@
+
 namespace Test_Passing
 {
     partial class TestMaker
@@ -50,6 +51,7 @@ namespace Test_Passing
             this.ExampleButton2 = new System.Windows.Forms.CheckBox();
             this.CorrectAnswerChecker = new System.Windows.Forms.CheckBox();
             this.CreateTestWindow = new System.Windows.Forms.OpenFileDialog();
+            this.FastSave = new System.Windows.Forms.ToolStripMenuItem();
             this.UpperMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.QuestionIndex)).BeginInit();
             this.SuspendLayout();
@@ -60,6 +62,7 @@ namespace Test_Passing
             this.CreateTest,
             this.OpenTest,
             this.SaveTest,
+            this.FastSave,
             this.StartTest});
             this.UpperMenu.Location = new System.Drawing.Point(0, 0);
             this.UpperMenu.Name = "UpperMenu";
@@ -84,8 +87,8 @@ namespace Test_Passing
             // SaveTest
             // 
             this.SaveTest.Name = "SaveTest";
-            this.SaveTest.Size = new System.Drawing.Size(78, 20);
-            this.SaveTest.Text = "Сохранить";
+            this.SaveTest.Size = new System.Drawing.Size(108, 20);
+            this.SaveTest.Text = "Сохранить как...";
             this.SaveTest.Click += new System.EventHandler(this.SaveTest_Click);
             // 
             // StartTest
@@ -280,6 +283,13 @@ namespace Test_Passing
             this.CreateTestWindow.FileName = "test.t";
             this.CreateTestWindow.Filter = "\"Все файлы|*.*|Тесты|*.t\"";
             // 
+            // FastSave
+            // 
+            this.FastSave.Name = "FastSave";
+            this.FastSave.Size = new System.Drawing.Size(78, 20);
+            this.FastSave.Text = "Сохранить";
+            this.FastSave.Click += new System.EventHandler(this.FastSave_Click);
+            // 
             // TestMaker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -340,5 +350,7 @@ namespace Test_Passing
         private System.Windows.Forms.CheckBox ExampleButton2;
         private System.Windows.Forms.CheckBox CorrectAnswerChecker;
         private System.Windows.Forms.OpenFileDialog CreateTestWindow;
+        private System.Windows.Forms.ToolStripMenuItem FastSave;
     }
 }
+

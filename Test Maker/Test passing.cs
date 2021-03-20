@@ -55,7 +55,7 @@ namespace Test_Passing
         void NextButton_Click(object sender, EventArgs e)
         {
             List<int> ids = new List<int>();
-            for (int i = 0; i < questions.Count; i++)
+            for (int i = 0; i < questions[Count].Answers.Count; i++)    //Checking correct answers
             {
                 if (questions[Count].Answers[i].Correct)
                 {
@@ -85,7 +85,6 @@ namespace Test_Passing
             }
             if (Count >= questions.Count - 1)
             {
-                hiding.Invoke();
                 BackColor = Color.Bisque;
                 QuestionTextBox.BackColor = BackColor;
                 Progress.Show();
@@ -100,11 +99,15 @@ namespace Test_Passing
                 QuestionTextBox.Text = "Тест завершён, вот ваш результат:";
                 PercentLabel.Text = percent + "%";
                 PercentLabel.Show();
+                hiding.Invoke();
             }
             else
                 QuestionTextBox.Text = questions[++Count].Text;
-            Refreshing();
-            ShowingElements();
+            if (Count < questions.Count - 1)
+            {
+                Refreshing();
+                ShowingElements();
+            }
         }
 
         private void BackButton_Click(object sender, EventArgs e)

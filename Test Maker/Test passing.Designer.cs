@@ -1,3 +1,4 @@
+
 namespace Test_Passing
 {
     partial class Test_passing
@@ -82,6 +83,7 @@ namespace Test_Passing
             this.QuestionTextBox.Location = new System.Drawing.Point(12, 12);
             this.QuestionTextBox.Multiline = true;
             this.QuestionTextBox.Name = "QuestionTextBox";
+            this.QuestionTextBox.ReadOnly = true;
             this.QuestionTextBox.Size = new System.Drawing.Size(360, 197);
             this.QuestionTextBox.TabIndex = 3;
             this.QuestionTextBox.Text = "Здесь должен был быть вопрос...";
@@ -125,8 +127,8 @@ namespace Test_Passing
             this.Controls.Add(this.QuestionTextBox);
             this.Controls.Add(this.NextButton);
             this.Controls.Add(this.BackButton);
-            this.Controls.Add(this.AnswersSingle);
             this.Controls.Add(this.AnswersMultiple);
+            this.Controls.Add(this.AnswersSingle);
             this.Name = "Test_passing";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Test_passing";
